@@ -2,10 +2,9 @@
 
 const GITHUB_USERNAME = 'Jarjarbin06';
 const GITHUB_ORG_NAME = 'Jarjarbin-Studio';
-
 const EXCLUDED_REPOS = [
     'Jarjarbin06',
-    'portfolio',
+    'jarjarbin-cloud-flare',
     'Stumper04',
     'WS_GoodPractices',
     'sans-ta_bs103cypher',
@@ -61,12 +60,7 @@ async function fetchProjects() {
         console.log(`[Projects] User: ${userUrl}`);
         console.log(`[Projects] Org: ${orgUrl}`);
 
-        // ✅ FIX: resilient fetching (no full crash if one fails)
-        const [userResult, orgResult] = await Promise.allSettled([
-            fetchJson(userUrl),
-            fetchJson(orgUrl)
-        ]);
-
+        const [userResult, orgResult] = await Promise.allSettled([fetchJson(userUrl), fetchJson(orgUrl)]);
         const userRepos = userResult.status === 'fulfilled' ? userResult.value : [];
         const orgRepos = orgResult.status === 'fulfilled' ? orgResult.value : [];
 
@@ -127,17 +121,29 @@ async function fetchProjects() {
             const safeStars = repo.stargazers_count ?? 0;
             const safeUrl = repo.html_url ?? '#';
 
+            const owner = repo.owner?.login ?? 'unknown';
+
+            const displayName =
+                owner === GITHUB_ORG_NAME
+                    ? `${GITHUB_ORG_NAME} - ${safeName}`
+                    : safeName;
+
             return `
-                <div class="project-card">
-                    <h3>${safeName}</h3>
-                    <p>${safeDesc}</p>
-                    <div class="meta">
-                        <span class="lang">${safeLang}</span>
-                        <span>★ ${safeStars}</span>
-                    </div>
-                    <a href="${safeUrl}" target="_blank">view on github →</a>
-                </div>
-            `;
+        <div class="project-card">
+            <h3>${displayName}</h3>
+
+            <p>${safeDesc}</p>
+
+            <div class="meta">
+                <span class="lang">${safeLang}</span>
+                <span>★ ${safeStars}</span>
+            </div>
+
+            <a href="${safeUrl}" target="_blank">
+                view on github →
+            </a>
+        </div>
+    `;
         }).join('');
 
         console.log('[Projects] Render complete ✔');
@@ -150,7 +156,6 @@ async function fetchProjects() {
 }
 
 /* -- INIT -- */
-
 document.addEventListener('DOMContentLoaded', () => {
     fetchProjects();
 

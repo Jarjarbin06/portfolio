@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nathan Jarjarbin — Portfolio</title>
+    <link href="../css/terminal.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<section id="hero">
+    <div class="terminal-window">
+        <div class="terminal-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">jarjarbin@portfolio: ~</span>
+        </div>
+        <div class="terminal-body">
+            <p><span class="prompt">$</span> whoami</p>
+            <p class="output">Nathan AMARAGGI - Jarjarbin</p>
+            <p><span class="prompt">$</span> cat role.txt</p>
+            <p class="output">Epitech student — Bordeaux | Python & C developer</p>
+            <p><span class="prompt">$</span> ls links/</p>
+            <p class="output">
+                <a href="https://github.com/Jarjarbin06" target="_blank">github</a>
+                <a href="#contact">contact</a>
+                <a download href="assets/cv.pdf">cv.pdf</a>
+            </p>
+            <p><span class="prompt">$</span> <span class="cursor">█</span></p>
+        </div>
+    </div>
+</section>
+<section id="about">
+    <h2><span class="prompt">#</span> about</h2>
+    <p>
+        I'm Nathan, a 19-year-old developer studying at Epitech Bordeaux (tek1).
+        I love building tools, automating things, and writing clean code in Python and C.
+        This portfolio is a living project — I built it myself.
+    </p>
+</section>
+<section id="skills">
+    <h2><span class="prompt">#</span> skills</h2>
+    <div class="skills-grid">
+        <div class="skill-card">C</div>
+        <div class="skill-card">Python</div>
+        <div class="skill-card">Git</div>
+        <div class="skill-card">Linux</div>
+        <div class="skill-card">Bash</div>
+        <div class="skill-card">oh-my-zsh</div>
+    </div>
+</section>
+<section id="projects">
+    <h2><span class="prompt">#</span> projects</h2>
+    <div id="projects-grid">
+        <p class="output">fetching repositories...</p>
+    </div>
+</section>
+<section id="contact">
+    <h2><span class="prompt">#</span> contact</h2>
+    <form id="contact-form">
+        <label for="name">name</label>
+        <input id="name" name="name" placeholder="your name" required type="text"/>
+
+        <label for="email">email</label>
+        <input id="email" name="email" placeholder="your@email.com" required type="email"/>
+
+        <label for="message">message</label>
+        <textarea id="message" name="message" placeholder="your message..." required rows="5"></textarea>
+
+        <button type="submit">send_message()</button>
+    </form>
+    <p id="form-status"></p>
+</section>
+<footer>
+    <p>built by Nathan Jarjarbin — <a href="https://github.com/Jarjarbin06/jarjarbin-cloud-flare" target="_blank">source</a></p>
+</footer>
+<script src="../js/portfolio.js"></script>
+</body>
+</html>
